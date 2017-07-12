@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Net;
 
 namespace ConsoleBot
@@ -8,39 +9,64 @@ namespace ConsoleBot
     {
         static void Main(string[] args)
         {
+            Console.Title = "Console-Bot";
             for (;;)
             {
                 Console.Clear();
                 string responseString = string.Empty;
+                Console.Write("Введите запрос: ");
 
-                var query = Console.ReadLine(); //User Query
+                // Запрос пользователя
+                var query = Console.ReadLine(); 
 
-                var knowledgebaseId = "2dcad03f-367b-4f2e-b8a4-1b28fbd7ebdd"; // Use knowledge base id created.
-                var qnamakerSubscriptionKey = "850a8ac4def146498ab7e2161cd87c9d"; //Use subscription key assigned to you.
+                // Идентификатор базы знаний
+                var knowledgebaseId = "da50c6c1-0e1f-467f-b94a-f82c0b0e1ac7"; 
 
-                
-                Uri qnamakerUriBase = new Uri("https://westus.api.cognitive.microsoft.com/qnamaker/v1.0"); //Build the URI
+                // Использование ключа подписи в QnA Maker
+                var qnamakerSubscriptionKey = "850a8ac4def146498ab7e2161cd87c9d"; 
+
+                // Вписать адрес для работы с классом URI
+                var qnamakerUriBase = new Uri("https://westus.api.cognitive.microsoft.com/qnamaker/v2.0"); 
                 var builder = new UriBuilder($"{qnamakerUriBase}/knowledgebases/{knowledgebaseId}/generateAnswer");
-                
-                var postBody = $"{{\"question\": \"{query}\"}}"; //Add the question as part of the body
-                
-                using (WebClient client = new WebClient()) //Send the POST request
-                {
-                    client.Encoding = System.Text.Encoding.UTF8; //Set the encoding to UTF8
 
-                    
-                    client.Headers.Add("Ocp-Apim-Subscription-Key", qnamakerSubscriptionKey); //Add the subscription key header
+                // Добавление вопроса как части тела
+                var postBody = $"{{\"question\": \"{query}\"}}"; 
+                
+                // Отсылаем ПОСТ запрос
+                using (var client = new WebClient()) 
+                {
+                    // Изменияем кодировку
+                    client.Encoding = System.Text.Encoding.UTF8; 
+
+                    // Добавляем заголовок ключа подписи
+                    client.Headers.Add("Ocp-Apim-Subscription-Key", qnamakerSubscriptionKey); 
                     client.Headers.Add("Content-Type", "application/json");
 
-                    responseString = client.UploadString(builder.Uri, postBody);
+                    try
+                    {
+                        responseString = client.UploadString(builder.Uri, postBody);
+                    }
+                    catch
+                    {
+                        continue;
+                    }
 
-                    // Создам переменную, которая из класса ResponseModel возвращает нам answer
-                    var response = JsonConvert.DeserializeObject<ResponseModel>(responseString); 
+                    // Создам переменную, которая из класса ResponseModel возвращает нам PossibleAnswer
+                    var response = JsonConvert.DeserializeObject<Response>(responseString);
 
-                    Console.WriteLine(response.Answer);
-                    Console.WriteLine(response.Score);
-                    Console.ReadLine();
+                    var firstOrDefault = response.Answers.FirstOrDefault();
+
+                    if (firstOrDefault != null)
+                    {
+                        Console.WriteLine(firstOrDefault.PossibleAnswer);
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
+
+                Console.ReadLine();
             }
         }
     }

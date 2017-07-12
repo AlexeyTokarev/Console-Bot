@@ -1,8 +1,7 @@
 C:\Users\User2\Documents\Visual Studio 2017\Projects\C# Projects\Bot Applications\ConsoleBot\ConsoleBot\bin\Debug\ConsoleBot.exe.config
 C:\Users\User2\Documents\Visual Studio 2017\Projects\C# Projects\Bot Applications\ConsoleBot\ConsoleBot\bin\Debug\ConsoleBot.exe
 C:\Users\User2\Documents\Visual Studio 2017\Projects\C# Projects\Bot Applications\ConsoleBot\ConsoleBot\bin\Debug\ConsoleBot.pdb
-C:\Users\User2\Documents\Visual Studio 2017\Projects\C# Projects\Bot Applications\ConsoleBot\ConsoleBot\obj\Debug\ConsoleBot.csprojResolveAssemblyReference.cache
-C:\Users\User2\Documents\Visual Studio 2017\Projects\C# Projects\Bot Applications\ConsoleBot\ConsoleBot\obj\Debug\ConsoleBot.exe
-C:\Users\User2\Documents\Visual Studio 2017\Projects\C# Projects\Bot Applications\ConsoleBot\ConsoleBot\obj\Debug\ConsoleBot.pdb
 C:\Users\User2\Documents\Visual Studio 2017\Projects\C# Projects\Bot Applications\ConsoleBot\ConsoleBot\bin\Debug\Newtonsoft.Json.dll
 C:\Users\User2\Documents\Visual Studio 2017\Projects\C# Projects\Bot Applications\ConsoleBot\ConsoleBot\bin\Debug\Newtonsoft.Json.xml
+C:\Users\User2\Documents\Visual Studio 2017\Projects\C# Projects\Bot Applications\ConsoleBot\ConsoleBot\obj\Debug\ConsoleBot.exe
+C:\Users\User2\Documents\Visual Studio 2017\Projects\C# Projects\Bot Applications\ConsoleBot\ConsoleBot\obj\Debug\ConsoleBot.pdb
